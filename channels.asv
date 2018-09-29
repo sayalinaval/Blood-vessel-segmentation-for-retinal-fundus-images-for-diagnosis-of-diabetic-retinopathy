@@ -1,0 +1,154 @@
+clc;
+clear all;
+close all;
+A=imread('C:\Documents and Settings\hp.PC209931236527.002\Desktop\BE-PROJECT\DRIVE\DRIVE\test\images\01_test.tif');
+[m n]=size(A);
+figure,imshow(A);
+title('original');
+aa=rgb2gray(A);
+[counts,X]=imhist(aa);
+%figure,imhist(aa);
+%title('hist of original image');
+whos A;
+
+%Red component
+R = A(:,:,1);
+figure;
+image(R), colormap([[0:1/255:1]', zeros(256,1), zeros(256,1)]), colorbar;
+
+%Green Component
+S = A(:,:,2);
+figure;
+image(S), colormap([zeros(256,1),[0:1/255:1]', zeros(256,1)]), colorbar;
+
+%Blue component
+%B = A(:,:,3);
+%figure;
+%image(B), colormap([zeros(256,1), zeros(256,1), [0:1/255:1]']), colorbar;
+
+[m n]=size(R);
+%figure,imshow(R);
+%title('red');
+[counts,X]=imhist(R);
+%figure,imhist(R);
+%title('hist of red image');
+
+[m n]=size(S);
+%figure,imshow(S);
+%title('green');
+[counts,X]=imhist(S);
+%figure,imhist(S);
+%title('hist of green image');
+
+w1=[5 -3 -3; 5 0 -3; 5 -3 -3];
+w2=[-3 -3 5; -3 0 5; -3 -3 5];
+w3=[-3 -3 -3; 5 0 -3; 5 5 -3];
+w4=[-3 5 5; -3 0 5; -3 -3 -3];
+w5=[-3 -3 -3; -3 0 -3; 5 5 5];
+w6=[5 5 5; -3 0 -3; -3 -3 -3];
+w7=[-3 -3 -3; -3 0 5; -3 5 5];
+w8=[5 5 -3; 5 0 -3; -3 -3 -3];
+
+%for w1
+g=imfilter(double(S),w1);
+imshow(g,[]);
+title('green');
+gtop=g(1:120,1:120);
+%gtop=pixeldup(gtop,4);
+figure,imshow(gtop,[]);
+title('gtop');
+g=abs(g);
+figure,imshow(g,[]);
+title('absolute');
+T=max(g(:));
+if g>=T
+    g=;
+else
+    g=0;
+end
+figure,imshow(g);
+title('aftr thresholding');
+
+%for w2
+g=imfilter(double(S),w2);
+imshow(g,[]);
+gtop=g(1:120,1:120);
+%gtop=pixeldup(gtop,4);
+figure,imshow(gtop,[]);
+g=abs(g);
+figure,imshow(g,[]);
+T=max(g(:));
+g=g>=T;
+figure,imshow(g);
+
+%for w3
+g=imfilter(double(S),w3);
+imshow(g,[]);
+gtop=g(1:120,1:120);
+%gtop=pixeldup(gtop,4);
+figure,imshow(gtop,[]);
+g=abs(g);
+figure,imshow(g,[]);
+T=max(g(:));
+g=g>=T;
+figure,imshow(g);
+
+%for w4
+g=imfilter(double(S),w4);
+imshow(g,[]);
+gtop=g(1:120,1:120);
+%gtop=pixeldup(gtop,4);
+figure,imshow(gtop,[]);
+g=abs(g);
+figure,imshow(g,[]);
+T=max(g(:));
+g=g>=T;
+figure,imshow(g);
+
+%for w5
+g=imfilter(double(S),w5);
+imshow(g,[]);
+gtop=g(1:120,1:120);
+%gtop=pixeldup(gtop,4);
+figure,imshow(gtop,[]);
+g=abs(g);
+figure,imshow(g,[]);
+T=max(g(:));
+g=g>=T;
+figure,imshow(g);
+
+%for w6
+g=imfilter(double(S),w6);
+imshow(g,[]);
+gtop=g(1:120,1:120);
+%gtop=pixeldup(gtop,4);
+figure,imshow(gtop,[]);
+g=abs(g);
+figure,imshow(g,[]);
+T=max(g(:));
+g=g>=T;
+figure,imshow(g);
+
+%for w7
+g=imfilter(double(S),w7);
+imshow(g,[]);
+gtop=g(1:120,1:120);
+%gtop=pixeldup(gtop,4);
+figure,imshow(gtop,[]);
+g=abs(g);
+figure,imshow(g,[]);
+T=max(g(:));
+g=g>=T;
+figure,imshow(g);
+
+%for w8
+g=imfilter(double(S),w8);
+imshow(g,[]);
+gtop=g(1:120,1:120);
+%gtop=pixeldup(gtop,4);
+figure,imshow(gtop,[]);
+g=abs(g);
+figure,imshow(g,[]);
+T=max(g(:));
+g=g>=T;
+figure,imshow(g);

@@ -1,0 +1,16 @@
+clc;
+clear all;
+close all;
+load wt.mat;
+ip=load('testing.txt');
+t=load('target.txt');
+t=t';
+ip=ip';
+y=round(sim(net,ip));
+%plotregression(trTarg,trOut,'Train',vTarg,vOut,'Validation',tsTarg,tsOut,'Testing')
+figure
+[m n]=size(t);
+X=1:1:n;
+plot(X,t);hold on;
+plot(X,t,'r-',X,y,'k-')
+legend('Predicted','observed');

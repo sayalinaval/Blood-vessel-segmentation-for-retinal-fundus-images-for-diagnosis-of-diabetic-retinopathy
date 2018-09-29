@@ -1,0 +1,19 @@
+clc;
+clear all;
+close all;
+A=imread('C:\Documents and Settings\hp.PC209931236527.002\Desktop\BE-PROJECT\DRIVE\DRIVE\training\1st_manual\21_manual1.gif');
+[m n]=size(A);
+
+G=padarray(G,[1 1]);
+[x y]=size(G);
+%G=im2uint8(G);
+ for i=2:x-1
+     for j=2:y-1
+         w=[G(i-1,j+1) G(i,j+1) G(i+1,j+1); G(i-1,j) G(i,j) G(i+1,j); G(i-1,j-1) G(i,j-1) G(i+1,j-1)];   
+         f1(i,j)=G(i,j)- min(min(w));
+         f2(i,j)=max(max(w))-G(i,j);
+         f3(i,j)=G(x,y)-mean(mean(w));
+         f4(i,j)= std(std(w));
+         f5(i,j)=G(i,j);
+     end
+ end

@@ -1,0 +1,5 @@
+clc;
+clear all;
+close all;
+A=imread('D:\sayali\studies\BE-PROJECT\DRIVE\DRIVE\training\1st_manual\21_manual1.gif');
+imshow(A);
